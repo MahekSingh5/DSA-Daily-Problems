@@ -1,0 +1,34 @@
+1class Solution {
+2public:
+3    bool isPrime(int n){
+4        if(n<=1)return false;
+5        for(int i=2; i<n; i++){
+6            if(n%i == 0)return false;
+7        }
+8        return true;
+9    }
+10    bool completePrime(int num) {
+11        int n = num;
+12        vector<int> arr;
+13        while(n>0){
+14            arr.push_back(n%10);
+15            n/=10;
+16        }
+17        reverse(arr.begin(), arr.end());
+18        
+19        int pref = 0;
+20        for(int i=0; i<arr.size(); i++){
+21            pref=pref*10+arr[i];
+22            if(!isPrime(pref))return false;
+23        }
+24        
+25        int suff = arr[arr.size()-1];
+26        if(!isPrime(suff))return false;
+27        int pw = 1;
+28        for(int i=arr.size()-2; i>=0; i--){
+29            suff = arr[i]*pow(10,pw++)+suff;
+30            if(!isPrime(suff))return false;    
+31        }
+32        return true;
+33    }
+34};
