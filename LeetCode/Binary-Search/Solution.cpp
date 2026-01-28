@@ -3,7 +3,7 @@
 3    int search(vector<int>& nums, int target) {
 4        int n = nums.size();
 5        int st = 0, end = n-1;
-6        int mid = st+(end-st)/2;
+6        int mid;
 7        while(st<=end){
 8            mid = st+(end-st)/2;
 9            if(nums[mid] == target) return mid;
