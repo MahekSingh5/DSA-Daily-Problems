@@ -9,13 +9,20 @@
 9class Solution {
 10public:
 11    ListNode *detectCycle(ListNode *head) {
-12        unordered_map<ListNode*, bool>hash;
-13        ListNode* temp = head;
-14        while(temp){
-15            if(hash[temp])return temp;
-16            hash[temp] = true;
-17            temp = temp->next;
-18        }
-19        return nullptr;
-20    }
-21};
+12        ListNode* slow = head;
+13        ListNode* fast = head;
+14        while(fast!=nullptr && fast->next!=nullptr){
+15            slow = slow->next;
+16            fast = fast->next->next;
+17            if(slow == fast){
+18                slow = head;
+19                while(fast!=slow){
+20                slow = slow->next;
+21                fast = fast->next;
+22                }
+23                return slow;
+24            }
+25        }
+26        return nullptr;
+27    }
+28};
