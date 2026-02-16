@@ -11,15 +11,15 @@
 11 */
 12class Solution {
 13public:
-14    void preOrder(TreeNode* root, vector<int>&vec){
-15        if(root == nullptr)return;
-16        vec.push_back(root->val);
-17        preOrder(root->left, vec);
-18        preOrder(root->right, vec);
+14    void postOrder(TreeNode* root, vector<int>&vec){
+15        if(root==nullptr)return;
+16        postOrder(root->left, vec);
+17        postOrder(root->right, vec);
+18        vec.push_back(root->val);
 19    }
-20    vector<int> preorderTraversal(TreeNode* root) {
+20    vector<int> postorderTraversal(TreeNode* root) {
 21        vector<int>vec;
-22        preOrder(root, vec);
+22        postOrder(root, vec);
 23        return vec;
 24    }
 25};
