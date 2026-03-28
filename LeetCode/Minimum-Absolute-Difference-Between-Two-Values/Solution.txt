@@ -1,0 +1,28 @@
+1class Solution {
+2public:
+3    int minAbsoluteDifference(vector<int>& nums) {
+4        unordered_map<int, int>map;
+5        map[1] = -1;
+6        map[2] = -1;
+7        int lastIdx1;
+8        int lastIdx2;
+9        int minDiff = 101;
+10        for(int i=0; i<nums.size(); i++){
+11            if(nums[i] == 1){
+12                lastIdx1 = i;
+13                map[1] = lastIdx1;
+14            }
+15            if(nums[i] == 2){
+16                lastIdx2 = i;
+17                map[2] = lastIdx2;
+18            }
+19            if(map[1]!=-1 && map[2]!=-1){
+20                int currDiff = abs(lastIdx1 - lastIdx2);
+21                minDiff = min (minDiff, currDiff);
+22            }
+23            
+24        }
+25        if (map[1]==-1 || map[2]==-1)minDiff = -1;
+26        return minDiff;
+27    }
+28};
