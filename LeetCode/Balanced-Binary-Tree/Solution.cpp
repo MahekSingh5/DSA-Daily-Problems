@@ -12,15 +12,16 @@
 12class Solution {
 13public:
 14    int checkHeight(TreeNode* root){
-15        if(!root)return 0;
+15        if(root==nullptr)return 0;
 16        int leftHeight = checkHeight(root->left);
 17        if(leftHeight == -1)return -1;
 18        int rightHeight = checkHeight(root->right);
 19        if(rightHeight == -1)return -1;
-20        if(abs(leftHeight - rightHeight) > 1)return -1;
-21        return 1+max(rightHeight, leftHeight);
-22    }
-23    bool isBalanced(TreeNode* root) {
-24        return checkHeight(root) != -1; 
-25    }
-26};
+20        if(abs(leftHeight - rightHeight)>1)return -1;
+21        return 1+max(leftHeight, rightHeight);
+22
+23    }
+24    bool isBalanced(TreeNode* root) {
+25        return checkHeight(root)!=-1;
+26    }
+27};
