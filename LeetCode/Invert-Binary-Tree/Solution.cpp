@@ -20,5 +20,5 @@
 20        invertTree(root->left);
 21        invertTree(root->right);
 22        return root;
-23    };
+23    }
 24};
