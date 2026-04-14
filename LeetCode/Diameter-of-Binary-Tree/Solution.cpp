@@ -12,15 +12,15 @@
 12class Solution {
 13public:
 14    int diameter = 0;
-15    int height(TreeNode* root){
-16        if(root == NULL)return 0;
-17        int left = height(root->left);
-18        int right = height(root->right);
-19        diameter = max(diameter, left+right);
-20        return 1 + max(left,right);
+15    int maxDiameter(TreeNode* root){
+16        if(root == nullptr)return 0;
+17        int maxleft = maxDiameter(root->left);
+18        int maxright = maxDiameter(root->right);
+19        diameter = max(diameter, maxleft+maxright);
+20        return 1+max(maxleft, maxright);
 21    }
 22    int diameterOfBinaryTree(TreeNode* root) {
-23        height(root);
+23        maxDiameter(root);
 24        return diameter;
 25    }
 26};
