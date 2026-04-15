@@ -22,12 +22,11 @@
 22            for(int i=0; i<size; i++){
 23                TreeNode* node = q.front();
 24                q.pop();
-25                currlevel.push_back(node->val);
+25                if(i == size-1)ans.push_back(node->val);
 26                if(node->left)q.push(node->left);
 27                if(node->right)q.push(node->right);
 28            }
-29            ans.push_back(currlevel[size-1]);
-30        }
-31        return ans;
-32    }
-33};
+29        }
+30        return ans;
+31    }
+32};
