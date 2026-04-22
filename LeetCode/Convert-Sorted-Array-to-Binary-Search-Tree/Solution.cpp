@@ -11,15 +11,15 @@
 11 */
 12class Solution {
 13public:
-14    TreeNode* rec(vector<int>&nums, int start, int end){
-15        if(start > end)return nullptr;
-16        int mid = start + (end-start)/2;
-17        TreeNode* node = new TreeNode(nums[mid]);
-18        node ->left = rec(nums, start, mid-1);
-19        node->right = rec(nums, mid+1, end);
-20        return node;
+14    TreeNode* BST(vector<int>nums, int st, int end){
+15        if(st>end)return nullptr;
+16        int mid = st + (end-st)/2;
+17        TreeNode* newnode = new TreeNode(nums[mid]);
+18        newnode->left = BST(nums, st, mid-1);
+19        newnode->right = BST(nums, mid+1, end);
+20        return newnode;
 21    }
 22    TreeNode* sortedArrayToBST(vector<int>& nums) {
-23        return rec(nums, 0, nums.size()-1);
+23        return BST(nums, 0, nums.size()-1);
 24    }
 25};
