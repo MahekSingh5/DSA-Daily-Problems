@@ -1,0 +1,54 @@
+1class Solution {
+2public:
+3    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+4        unordered_map<string,unordered_map<string,double>> mp;
+5        for(int i=0;i<equations.size();i++){
+6            string source=equations[i][0];
+7            string dest=equations[i][1];
+8            double cost=values[i];
+9            if(mp.find(source)!=mp.end()){
+10                mp[source][dest]=cost;
+11            }else{
+12                unordered_map<string,double> nested_mp;
+13                nested_mp[dest]=cost;
+14                mp[source]=nested_mp;}
+15            if(mp.find(dest)!=mp.end()){
+16                mp[dest][source]=1/cost;
+17            }else{
+18                unordered_map<string,double> nested_mp;
+19                nested_mp[source]=1/cost;
+20                mp[dest]=nested_mp;}}
+21        vector<double> res;
+22        for(int i=0;i<queries.size();i++){
+23            string start=queries[i][0];
+24            string end=queries[i][1];
+25            bool flag=true;
+26            if(!(mp.find(start)!=mp.end()&&mp.find(end)!=mp.end())) {res.push_back(-1); 
+27            continue;}
+28            if(start==end){res.push_back(1);
+29            continue;}
+30            // if()
+31            queue<pair<string,double>> q;
+32            q.push({start,1});
+33            set<string> visited;
+34            while(!q.empty()){
+35                auto node=q.front();
+36                string node_n=node.first;
+37                double node_cost=node.second;
+38                q.pop();
+39                visited.insert(node_n);
+40                if(node_n==end){
+41                    res.push_back(node_cost);flag=false;
+42                    break;
+43                }
+44                auto neighbours=mp[node_n];
+45                for(auto it: neighbours){
+46                    if(visited.find(it.first)==visited.end()){
+47                        q.push({it.first,node_cost*it.second});
+48                    }
+49                }
+50            }if(flag)res.push_back(-1);
+51        }
+52        return res;
+53    }
+54}; 
