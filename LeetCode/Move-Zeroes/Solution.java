@@ -1,16 +1,16 @@
 1class Solution {
-2public:
-3    void moveZeroes(vector<int>& nums) {
-4        int n = nums.size();
-5        int nonzeroI=0;
-6        for(int i=0; i<n; i++){
-7            if(nums[i]!=0){
-8                nums[nonzeroI++]=nums[i];
+2    public void moveZeroes(int[] nums) {
+3        int n = nums.length;
+4        int index = 0;
+5        for(int i=0; i<n; i++){
+6            if(nums[i] != 0){
+7                nums[index] = nums[i];
+8                index++;
 9            }
 10        }
-11        for(int i=nonzeroI; i<n; i++){
-12            nums[i]=0;
-13        }
-14        return ;
+11    while(index<nums.length){
+12        nums[index] = 0;
+13        index++;
+14    }
 15    }
-16};
+16}
