@@ -14,7 +14,7 @@
 14    }
 15    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
 16        vector<vector<int>>adj(n);
-17        for(auto &e : edges){
+17        for(auto e : edges){
 18            adj[e[0]].push_back(e[1]);
 19            adj[e[1]].push_back(e[0]);
 20        }
