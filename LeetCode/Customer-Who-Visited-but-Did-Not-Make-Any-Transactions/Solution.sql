@@ -1,0 +1,1 @@
+visits_no_trans = visits[~visits.visit_id.isin(transactions.visit_id)]
