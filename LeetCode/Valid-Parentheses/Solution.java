@@ -1,23 +1,19 @@
 1class Solution {
-2public:
-3    bool isValid(string s) {
-4        stack<char> st;
-5        for(char ch : s){
-6            if(ch == '(' || ch == '{' || ch == '['){
-7                st.push(ch);
-8            }else{
-9                if(st.empty())return false;
-10                if((ch == ')' && st.top() != '(') || 
-11                (ch == '}' && st.top() != '{')||
-12                (ch == ']' && st.top() != '[')){
-13                    return false;
-14                }else{
-15                    st.pop();
-16                }
-17            }
-18        }
-19    return st.empty();
-20    }
-21};
-22
-23
+2    public boolean isValid(String s) {
+3        Stack<Character> stack = new Stack<>();
+4        for(char c : s.toCharArray()){
+5            if(c == '(' || c == '{' || c == '[') stack.push(c);
+6            else{
+7                if(stack.isEmpty())return false;
+8                if((c == ')' && stack.peek() != '(')
+9                || (c == ']' && stack.peek() != '[')
+10                || (c == '}' && stack.peek() != '{')){
+11                    return false;
+12                }else{
+13                    stack.pop();
+14                }
+15            }
+16        }
+17        return stack.isEmpty();
+18    }
+19}
